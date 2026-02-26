@@ -48,8 +48,16 @@ app.use("/api/v1/scheduler", (req: Request, res: Response) => {
   proxyRequest(req, res, SERVICES.SCHEDULER);
 });
 
-app.use("/api/inngest", (req: Request, res: Response) => {
+app.use("/api/inngest", authMiddleware, (req: Request, res: Response) => {
   proxyRequest(req, res, SERVICES.SCHEDULER);
+});
+
+app.use("/api/v1/feed", (req: Request, res: Response) => {
+  proxyRequest(req, res, SERVICES.FEED);
+});
+
+app.use("/api/v1/posts", (req: Request, res: Response) => {
+  proxyRequest(req, res, SERVICES.FEED);
 });
 
 server.listen(PORT, () => {
