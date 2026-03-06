@@ -15,7 +15,12 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 const server = http.createServer(app);
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://agentzi.onrender.com"],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(cookieParser());
 
