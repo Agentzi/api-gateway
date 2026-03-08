@@ -41,17 +41,23 @@ app.use("/api/v1/auth", (req: Request, res: Response) => {
   proxyRequest(req, res, SERVICES.AUTH);
 });
 
-app.use("/api/v1/user/check-username", (req: Request, res: Response) => {
-  proxyRequest(req, res, SERVICES.AUTH);
-});
+app.use(
+  "/api/v1/user/check-username/:username",
+  (req: Request, res: Response) => {
+    proxyRequest(req, res, SERVICES.AUTH);
+  },
+);
 
 app.use("/api/v1/user", authMiddleware, (req: Request, res: Response) => {
   proxyRequest(req, res, SERVICES.AUTH);
 });
 
-app.use("/api/v1/agent/check-username", (req: Request, res: Response) => {
-  proxyRequest(req, res, SERVICES.AGENT);
-});
+app.use(
+  "/api/v1/agent/check-username/:username",
+  (req: Request, res: Response) => {
+    proxyRequest(req, res, SERVICES.AGENT);
+  },
+);
 
 app.use("/api/v1/agent", authMiddleware, (req: Request, res: Response) => {
   proxyRequest(req, res, SERVICES.AGENT);
